@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{ url_for('static', filename='module.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>여성의 말 아카이브 She Said</title>
+    <style>
+        body {
+            background-color: #f7f7f8;
+        }
+
+        .margin-both-16 {
+            margin: 0 16px 0 16px;
+        }
+
+        .margin-both-24 {
+            margin: 0 24px 0 24px;
+        }
+
+        .top-wrap {
+            background-color: #ffffff;
+        }
+
+        .top-wrap .logo {
+            font-family: 'Red Rose', cursive, sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 40px 0 24px 0;
+        }
+
+        .top-wrap .top-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .text-info {
+            margin-top: 40px;
+            padding-bottom: 24px;
+        }
+
+        .text-info .text-who {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .text-info .text-from {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            color: #6D7278;
+            font-weight: 500;
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .category-wrap {
+            margin: 24px 16px 0 16px;
+        }
+
+        .category-wrap .category.select {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            margin-right: 12px;
+            padding: 8px 16px 8px 16px;
+            background-color: #FFE500;
+            display: inline-block;
+        }
+
+        .category-wrap .category {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            margin-right: 12px;
+            padding: 8px 16px 8px 16px;
+            background-color: #D8D8D8;
+            display: inline-block;
+        }
+
+
+        .list-wrap {
+            margin: 24px 16px 0 16px;
+        }
+
+        .list-wrap .card-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
+            margin-bottom: 16px;
+        }
+
+        .list-wrap .card-box .card-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.5;
+            padding-top: 24px;
+            margin-bottom: 32px;
+        }
+
+        .list-wrap .card-box .card-info {
+            padding-bottom: 16px;
+        }
+
+        .list-wrap .card-box .card-info img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .list-wrap .card-box .card-info-text {
+            display: inline-block;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .list-wrap .card-box .card-info-text .card-from {
+            color: #6D7278;
+            margin-top: 8px;
+            margin-bottom: 6px;
+        }
+
+
+        @media screen and (min-width: 769px) {
+            .total-wrap {
+                width: 100%;
+                margin: auto;
+            }
+
+            .top-wrap-web {
+                width: 1080px;
+                margin: auto;
+            }
+
+            .bottom-wrap {
+                width: 1080px;
+                margin: auto;
+            }
+
+            .list-wrap {
+                column-count: 3;
+                column-gap: 16px;
+            }
+
+            .list-wrap .card-box {
+                display: inline-block;
+                margin-bottom: 24px;
+                width: 100%;
+            }
+        }
+
+    </style>
+    </head>
+    <body>
+        <div class="total-wrap">
+            <div class="top-wrap">
+                <div class="top-wrap-web margin-both-16">
+                    <p class="logo">SheSaid,</p>
+                    <p class="top-text">내가 얼마나 더 멀리 갈지 아무도 장담할 수 없어.</p>
+                    <div class="text-info">
+                        <div class="text-line"></div>
+                        <p class="text-who">모아나 </p>
+                        <p class="text-from">모아나(Moana, 2016)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-wrap">
+                <div class="category-wrap">
+                    <div class="category select">전체</div>
+                    <div class="category">#공부</div>
+                </div>
+
+                <div class="list-wrap">
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">일 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.<br/>
+                                내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">이 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">삼 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">사 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">오 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.<br/>
+                                내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">육 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">칠 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">팔 내 욕망엔 계기가 없어.<br/>
+                                내 욕망은 내가 만드는 거야.</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="https://search.pstatic.net/common?type=ofullfill&amp;size=137x153&amp;quality=90&amp;direct=true&amp;src=http%3A%2F%2Fsstatic.naver.net%2Fkeypage%2Fimage%2Fdss%2F60%2F77%2F59%2F00%2F60_9775900_main_image_new_1558591252839.jpg">
+                                <div class="card-info-text">
+                                    <p class="card-who">배타미(임수정)</p>
+                                    <p class="card-from">검색어를 입력하세요 WWW</p></div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+</html>
