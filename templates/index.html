@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="{{ url_for('static', filename='module.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -29,12 +30,13 @@
                 </div>
             </div>
             <div class="bottom-wrap">
-                <div class="category-wrap">
-                    <div class="category select">전체</div>
-                    <div class="category">#공부</div>
+                <div class="category-wrap" id="keyword">
+                    <p class="category" onclick="showSayings()">전체</p>
+                    <p class="category select" onclick="sortSayings()">영화</p>
+                    <p class="category" onclick="sortSayings()">드라마</p>
                 </div>
 
-                <div class="list-wrap">
+                <div class="list-wrap" id="card-box">
                     <figure class="card-box">
                         <div class="margin-both-24">
                             <p class="card-text">일 내 욕망엔 계기가 없어.<br/>
@@ -148,5 +150,111 @@
 
 
         </div>
+        <script>
+            $(document).ready(function () {
+                $(".category").off("click").on("click", function () {
+                    if ($(".category").hasClass("select")) {
+                        $(".category").removeClass("select");
+                    } else {
+                        $(".category").addClass("select");
+                    }
+                });
+
+                showSayings();
+            });
+
+            function showSayings() {
+                // 1. #star_box의 내부 html 태그를 모두 삭제합니다.
+                $('#card-box').empty()
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/list',
+                    data: {},
+                    success: function (response) {
+                        let sayings = response['sayings_list']
+                        for (let i = 0; i < sayings.length; i++) {
+                            let saying = sayings[i]
+                            // 5. star[i] 요소의 name, url, img_url, recent, like 키 값을 활용하여 값을 조회합니다.
+                            let saying_kr = saying['saying_kr']
+                            let img = saying['img']
+                            let who = saying['who']
+                            let from = saying['from']
+                            // 6. 영화인 카드를 만듭니다.
+                            let tempHtml = `<figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">${saying_kr}</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="${img}">
+                                <div class="card-info-text">
+                                    <p class="card-who">${who}</p>
+                                    <p class="card-from">${from}</p></div>
+                            </div>
+                        </div>
+                    </figure>`
+                            $('#card-box').append(tempHtml)
+                        }
+
+                    }
+                });
+
+            }
+
+
+            function sortSayings() {
+                // 1. #star_box의 내부 html 태그를 모두 삭제합니다.
+                $('#card-box').empty()
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/category',
+                    data: {},
+                    success: function (response) {
+                        let sort_movie = response['sayings_list']
+                        for (let i = 0; i < sort_movie.length; i++) {
+                            let saying = sort_movie[i]
+                            // 5. star[i] 요소의 name, url, img_url, recent, like 키 값을 활용하여 값을 조회합니다.
+                            let saying_kr = saying['saying_kr']
+                            let img = saying['img']
+                            let who = saying['who']
+                            let from = saying['from']
+                            // 6. 영화인 카드를 만듭니다.
+                            let tempHtml = `<figure class="card-box">
+                        <div class="margin-both-24">
+                            <p class="card-text">${saying_kr}</p>
+                            <div class="card-info">
+                                <img class="list-profile"
+                                     src="${img}">
+                                <div class="card-info-text">
+                                    <p class="card-who">${who}</p>
+                                    <p class="card-from">${from}</p></div>
+                            </div>
+                        </div>
+                    </figure>`
+                            $('#card-box').append(tempHtml)
+                        }
+
+                    }
+                });
+
+            }
+
+
+            // function classAdd() {
+            //     var element = document.getElementsByClassName('category');
+            //     element.classList.add('select');
+            // }
+
+            // function toggle() {
+            //     let category = document.getElementsByClassName('category')
+            //     category.classList.toggleClass('select');
+            // };
+
+            // $("#keyword > p").click(function () {
+            //         $(this).toggleClass("select");
+            //     }) 이렇게 하니까 갑자기 sort가 안됨;
+
+        </script>
     </body>
 </html>
