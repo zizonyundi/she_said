@@ -31,9 +31,9 @@
             </div>
             <div class="bottom-wrap">
                 <div class="category-wrap" id="keyword">
-                    <p class="category select" onclick="showSayings()">전체</p>
-                    <p class="category" onclick="sortSayings()">영화</p>
-                    <p class="category" onclick="sortSayings()">드라마</p>
+                    <p class="category" onclick="showSayings()">전체</p>
+                    <p class="category select" onclick="sortSayings('영화')">영화</p>
+                    <p class="category" onclick="sortSayings('드라마')">드라마</p>
                 </div>
 
                 <div class="list-wrap" id="card-box">
@@ -203,11 +203,11 @@
             }
 
 
-            function sortSayings() {
+            function sortSayings(category) {
                 $('#card-box').empty()
                 $.ajax({
                     type: 'GET',
-                    url: '/category',
+                    url: '/category?category=' + category,
                     data: {},
                     success: function (response) {
                         let sayings = response['sayings_list']
