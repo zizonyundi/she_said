@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='module.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="[https://html2canvas.hertzen.com/dist/html2canvas.min.js](https://html2canvas.hertzen.com/dist/html2canvas.min.js)"></script>
     </head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,6 +16,67 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;700&display=swap" rel="stylesheet">
     <title>여성의 말 아카이브 She Said</title>
+    <style>
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background: #000;
+            margin: 20px;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-con {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 60%;
+            min-height: 30%;
+            background: #fff;
+        }
+
+        .modal-con .title {
+            font-size: 20px;
+            padding: 20px;
+            background: gold;
+        }
+
+        .modal-con .con {
+            font-size: 15px;
+            line-height: 1.3;
+            padding: 30px;
+        }
+
+        .modal-con .close {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            text-align: center;
+            line-height: 30px;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            right: 10px;
+            top: 10px;
+        }
+
+    </style>
     </head>
     <body>
         <div class="total-wrap">
@@ -147,8 +209,22 @@
                     </figure>
                 </div>
             </div>
+            <!--            <div id="wrap">-->
+            <!--                <a href="javascript:openModal('modal1');" class="button modal-open">모달열기1</a>-->
+            <!--                <a href="javascript:openModal('modal2');" class="button modal-open">모달열기2</a>-->
+            <!--            </div>-->
 
+            <div id="modal"></div>
 
+            <div class="modal-con modal1">
+                <a href="javascript:;" class="close">X</a>
+                <p class="title">제목2</p>
+                <div class="con">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book.
+                </div>
+            </div>
         </div>
         <script>
             $(document).ready(function () {
@@ -182,7 +258,8 @@
                             let who = saying['who']
                             let from = saying['from']
 
-                            let tempHtml = `<figure class="card-box">
+                            let made_id = 'card-' + i
+                            let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal1')">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
                             <div class="card-info">
@@ -219,7 +296,9 @@
                             let who = saying['who']
                             let from = saying['from']
 
-                            let tempHtml = `<figure class="card-box">
+                            let made_id = 'card-' + i
+                            let tempHtml =
+                                `<figure class="card-box" id="${made_id}" onclick="openModal('modal1')">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
                             <div class="card-info">
@@ -236,23 +315,33 @@
 
                     }
                 });
-
             }
+
+            function openModal(modalname) {
+                document.get
+                $("#modal").fadeIn(300);
+                $("." + modalname).fadeIn(300);
+            }
+
+            $("#modal, .close").on('click', function () {
+                $("#modal").fadeOut(300);
+                $(".modal-con").fadeOut(300);
+            });
 
 
             // function classAdd() {
-            //     var element = document.getElementsByClassName('category');
-            //     element.classList.add('select');
+            // var element = document.getElementsByClassName('category');
+            // element.classList.add('select');
             // }
 
             // function toggle() {
-            //     let category = document.getElementsByClassName('category')
-            //     category.classList.toggleClass('select');
+            // let category = document.getElementsByClassName('category')
+            // category.classList.toggleClass('select');
             // };
 
             // $("#keyword > p").click(function () {
-            //         $(this).toggleClass("select");
-            //     }) 이렇게 하니까 갑자기 sort가 안됨;
+            // $(this).toggleClass("select");
+            // }) 이렇게 하니까 갑자기 sort가 안됨;
 
         </script>
     </body>
