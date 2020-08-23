@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='module.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="[https://html2canvas.hertzen.com/dist/html2canvas.min.js](https://html2canvas.hertzen.com/dist/html2canvas.min.js)"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     </head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -214,20 +214,24 @@
             <!--                <a href="javascript:openModal('modal2');" class="button modal-open">모달열기2</a>-->
             <!--            </div>-->
 
-            <div id="modal"></div>
+            <div id="modal">
 
-            <div class="modal-con modal1">
-                <a href="javascript:;" class="close">X</a>
-                <p class="title">제목2</p>
-                <div class="con">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book.
+                <div class="modal-con modal1">
+                    <a href="javascript:;" class="close">X</a>
+                    <p class="title">제목2</p>
+                    <div class="con">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                        type
+                        and scrambled it to make a type specimen book.
+                    </div>
                 </div>
             </div>
         </div>
         <script>
             $(document).ready(function () {
+
                 $(".category").off("click").on("click", function () {
                     if ($(this).hasClass("select")) {
                         // $(this).removeClass("select");
@@ -241,6 +245,12 @@
 
                 showSayings();
             });
+
+            function reply_click(clicked_id) {
+               let text = $('clicked_id').find('.card-text');
+                console.log(clicked_id);
+                console.log(text);
+            }
 
             function showSayings() {
                 $('#card-box').empty()
@@ -259,7 +269,7 @@
                             let from = saying['from']
 
                             let made_id = 'card-' + i
-                            let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal1')">
+                            let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal1'); reply_click(this.id);">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
                             <div class="card-info">
@@ -274,7 +284,9 @@
                             $('#card-box').append(tempHtml)
                         }
 
+
                     }
+
                 });
 
             }
@@ -282,6 +294,7 @@
 
             function sortSayings(category) {
                 $('#card-box').empty()
+
                 $.ajax({
                     type: 'GET',
                     url: '/category?category=' + category,
@@ -298,9 +311,9 @@
 
                             let made_id = 'card-' + i
                             let tempHtml =
-                                `<figure class="card-box" id="${made_id}" onclick="openModal('modal1')">
+                                `<figure class="card-box" id="${made_id}" onclick="openModal('modal1'); reply_click(this.id)";>
                         <div class="margin-both-24">
-                            <p class="card-text">${saying_kr}</p>
+                            <p class="card-text" id="card-text">${saying_kr}</p>
                             <div class="card-info">
                                 <img class="list-profile"
                                      src="${img}">
@@ -311,37 +324,35 @@
                         </div>
                     </figure>`
                             $('#card-box').append(tempHtml)
+
                         }
 
                     }
                 });
+
             }
+
+
+            // function makeModal() {
+            //     $('.card-box').click(function () {
+            //         document.get
+            //         var getId = $(this).attr("id");
+            //         console.log(getId);
+            //         var text = $('getId').find('#card-text');
+            //         console.log(text);
+            //     });
+            // }
 
             function openModal(modalname) {
                 document.get
                 $("#modal").fadeIn(300);
                 $("." + modalname).fadeIn(300);
-            }
+
 
             $("#modal, .close").on('click', function () {
                 $("#modal").fadeOut(300);
                 $(".modal-con").fadeOut(300);
             });
-
-
-            // function classAdd() {
-            // var element = document.getElementsByClassName('category');
-            // element.classList.add('select');
-            // }
-
-            // function toggle() {
-            // let category = document.getElementsByClassName('category')
-            // category.classList.toggleClass('select');
-            // };
-
-            // $("#keyword > p").click(function () {
-            // $(this).toggleClass("select");
-            // }) 이렇게 하니까 갑자기 sort가 안됨;
 
         </script>
     </body>
