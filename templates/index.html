@@ -153,10 +153,10 @@
         <script>
             $(document).ready(function () {
                 $(".category").off("click").on("click", function () {
-                    if ($(".category").hasClass("select")) {
-                        $(".category").removeClass("select");
+                    if ($(this).hasClass("select")) {
+                        $(this).removeClass("select");
                     } else {
-                        $(".category").addClass("select");
+                        $(this).addClass("select");
                     }
                 });
 
@@ -164,7 +164,6 @@
             });
 
             function showSayings() {
-                // 1. #star_box의 내부 html 태그를 모두 삭제합니다.
                 $('#card-box').empty()
 
                 $.ajax({
@@ -175,12 +174,12 @@
                         let sayings = response['sayings_list']
                         for (let i = 0; i < sayings.length; i++) {
                             let saying = sayings[i]
-                            // 5. star[i] 요소의 name, url, img_url, recent, like 키 값을 활용하여 값을 조회합니다.
+
                             let saying_kr = saying['saying_kr']
                             let img = saying['img']
                             let who = saying['who']
                             let from = saying['from']
-                            // 6. 영화인 카드를 만듭니다.
+
                             let tempHtml = `<figure class="card-box">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
@@ -203,7 +202,6 @@
 
 
             function sortSayings() {
-                // 1. #star_box의 내부 html 태그를 모두 삭제합니다.
                 $('#card-box').empty()
 
                 $.ajax({
@@ -214,12 +212,12 @@
                         let sort_movie = response['sayings_list']
                         for (let i = 0; i < sort_movie.length; i++) {
                             let saying = sort_movie[i]
-                            // 5. star[i] 요소의 name, url, img_url, recent, like 키 값을 활용하여 값을 조회합니다.
+
                             let saying_kr = saying['saying_kr']
                             let img = saying['img']
                             let who = saying['who']
                             let from = saying['from']
-                            // 6. 영화인 카드를 만듭니다.
+
                             let tempHtml = `<figure class="card-box">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
