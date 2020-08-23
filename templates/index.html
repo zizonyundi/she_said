@@ -31,8 +31,8 @@
             </div>
             <div class="bottom-wrap">
                 <div class="category-wrap" id="keyword">
-                    <p class="category" onclick="showSayings()">전체</p>
-                    <p class="category select" onclick="sortSayings()">영화</p>
+                    <p class="category select" onclick="showSayings()">전체</p>
+                    <p class="category" onclick="sortSayings()">영화</p>
                     <p class="category" onclick="sortSayings()">드라마</p>
                 </div>
 
@@ -154,9 +154,12 @@
             $(document).ready(function () {
                 $(".category").off("click").on("click", function () {
                     if ($(this).hasClass("select")) {
-                        $(this).removeClass("select");
+                        // $(this).removeClass("select");
+                        // $(".category").not($(this)).addClass("select");
                     } else {
                         $(this).addClass("select");
+                        $(".category").not($(this)).removeClass("select");
+                        sortSayings();
                     }
                 });
 
@@ -165,7 +168,6 @@
 
             function showSayings() {
                 $('#card-box').empty()
-
                 $.ajax({
                     type: 'GET',
                     url: '/list',
@@ -203,15 +205,14 @@
 
             function sortSayings() {
                 $('#card-box').empty()
-
                 $.ajax({
                     type: 'GET',
                     url: '/category',
                     data: {},
                     success: function (response) {
-                        let sort_movie = response['sayings_list']
-                        for (let i = 0; i < sort_movie.length; i++) {
-                            let saying = sort_movie[i]
+                        let sayings = response['sayings_list']
+                        for (let i = 0; i < sayings.length; i++) {
+                            let saying = sayings[i]
 
                             let saying_kr = saying['saying_kr']
                             let img = saying['img']
