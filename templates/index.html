@@ -215,16 +215,10 @@
             <!--            </div>-->
 
             <div id="modal">
-
                 <div class="modal-con modal1">
                     <a href="javascript:;" class="close">X</a>
                     <p class="title">제목2</p>
-                    <div class="con">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and scrambled it to make a type specimen book.
+                    <div class="con">어쩌구저쩌구
                     </div>
                 </div>
             </div>
@@ -239,18 +233,13 @@
                     } else {
                         $(this).addClass("select");
                         $(".category").not($(this)).removeClass("select");
-                        sortSayings();
                     }
                 });
 
                 showSayings();
+                sortSayings();
             });
 
-            function reply_click(clicked_id) {
-               let text = $('clicked_id').find('.card-text');
-                console.log(clicked_id);
-                console.log(text);
-            }
 
             function showSayings() {
                 $('#card-box').empty()
@@ -333,26 +322,36 @@
             }
 
 
-            // function makeModal() {
-            //     $('.card-box').click(function () {
-            //         document.get
-            //         var getId = $(this).attr("id");
-            //         console.log(getId);
-            //         var text = $('getId').find('#card-text');
-            //         console.log(text);
-            //     });
-            // }
-
             function openModal(modalname) {
                 document.get
                 $("#modal").fadeIn(300);
                 $("." + modalname).fadeIn(300);
+            };
+
+
+            function reply_click(clicked_id) {
+                let text = $('#' + clicked_id).find('.card-text').text();
+                console.log(clicked_id);
+                console.log(text);
+
+                $('#modal').empty()
+                let tempHtmlModal =
+                    `<div class="modal-con modal1" style="display:block;">
+                    <a href="javascript:;" class="close">X</a>
+                    <p class="title">제목 </p>
+                    <div class="con">
+                        ${text}
+                    </div>
+                </div>`
+                $('#modal').append(tempHtmlModal)
+            };
 
 
             $("#modal, .close").on('click', function () {
                 $("#modal").fadeOut(300);
                 $(".modal-con").fadeOut(300);
             });
+
 
         </script>
     </body>
