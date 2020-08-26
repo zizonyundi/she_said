@@ -17,17 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;700&display=swap" rel="stylesheet">
     <title>여성의 말 아카이브 She Said</title>
     <style>
-        a.button {
-            display: inline-block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #fff;
-            background: #000;
-            margin: 20px;
-        }
 
         #modal {
-            display: none;
+            display: block;
             position: fixed;
             width: 100%;
             height: 100%;
@@ -36,30 +28,52 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-        .modal-con {
-            display: none;
+        .modal-wrap {
+            display: block;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 60%;
-            min-height: 30%;
+            width: 70vw;
+            height: 90vw;
             background: #fff;
         }
 
-        .modal-con .title {
-            font-size: 20px;
-            padding: 20px;
-            background: gold;
+        .save_btn {
+            display: block;
+            position: absolute;
         }
 
-        .modal-con .con {
+        .modal-content {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: orange;
+        }
+
+
+        .modal-content .saying {
+            font-size: 32px;
+            padding: 20px;
+        }
+
+        .modal-content .who {
             font-size: 15px;
             line-height: 1.3;
             padding: 30px;
         }
 
-        .modal-con .close {
+        .modal-content .from {
+            font-size: 15px;
+            line-height: 1.3;
+            padding: 30px;
+        }
+
+        .close {
             display: block;
             position: absolute;
             width: 30px;
@@ -215,11 +229,18 @@
             <!--            </div>-->
 
             <div id="modal">
-                <div class="modal-con modal1">
+                <div class="modal-wrap">
                     <a href="javascript:;" class="close">X</a>
-                    <p class="title">제목2</p>
-                    <div class="con">어쩌구저쩌구
+
+                    <div class="modal-content" id="modal-content">
+
+                        <p class="saying">내가 얼마나 더 멀리 갈지 아무도 장담할 수 없어. </p>
+                        <div class="who">모아나</div>
+                        <div class="from">모아나(Moana, 2016)</div>
                     </div>
+                    <div class="save_btn"><a class="hover" href='javascript:void(0);'
+                                             onclick="PrintDiv($('#modal-content'));">이미지로
+                        저장</a></div>
                 </div>
             </div>
         </div>
@@ -258,7 +279,7 @@
                             let from = saying['from']
 
                             let made_id = 'card-' + i
-                            let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal1'); reply_click(this.id);">
+                            let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal'); reply_click(this.id);">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
                             <div class="card-info">
@@ -271,6 +292,7 @@
                         </div>
                     </figure>`
                             $('#card-box').append(tempHtml)
+
                         }
 
 
@@ -300,7 +322,7 @@
 
                             let made_id = 'card-' + i
                             let tempHtml =
-                                `<figure class="card-box" id="${made_id}" onclick="openModal('modal1'); reply_click(this.id)";>
+                                `<figure class="card-box" id="${made_id}" onclick="openModal('modal'); reply_click(this.id)";>
                         <div class="margin-both-24">
                             <p class="card-text" id="card-text">${saying_kr}</p>
                             <div class="card-info">
@@ -321,6 +343,23 @@
 
             }
 
+            //이미지(png)로 다운로드
+            function PrintDiv(div) {
+                div = div[0]
+                html2canvas(div).then(function (canvas) {
+                    var myImage = canvas.toDataURL();
+                    downloadURI(myImage, "저장이미지이름.png")
+                });
+            }
+
+            function downloadURI(uri, name) {
+                var link = document.createElement("a")
+                link.download = name;
+                link.href = uri;
+                document.body.appendChild(link);
+                link.click();
+            }
+
 
             function openModal(modalname) {
                 document.get
@@ -330,18 +369,24 @@
 
 
             function reply_click(clicked_id) {
-                let text = $('#' + clicked_id).find('.card-text').text();
-                console.log(clicked_id);
-                console.log(text);
+                let saying = $('#' + clicked_id).find('.card-text').text();
+                let who = $('#' + clicked_id).find('.card-who').text();
+                let from = $('#' + clicked_id).find('.card-from').text();
 
                 $('#modal').empty()
                 let tempHtmlModal =
-                    `<div class="modal-con modal1" style="display:block;">
+                    `           <div class="modal-wrap" style="display:block;">
                     <a href="javascript:;" class="close">X</a>
-                    <p class="title">제목 </p>
-                    <div class="con">
-                        ${text}
+
+                    <div class="modal-content" id="modal-content">
+
+                        <p class="saying">${saying}</p>
+                        <div class="who">${who}</div>
+                        <div class="from">${from}</div>
                     </div>
+                    <div class="save_btn"><a class="hover" href='javascript:void(0);'
+                                             onclick="PrintDiv($('#modal-content'));">이미지로
+                        저장</a></div>
                 </div>`
                 $('#modal').append(tempHtmlModal)
             };
