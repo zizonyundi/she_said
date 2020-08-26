@@ -90,6 +90,21 @@
             top: 10px;
         }
 
+
+        @media screen and (min-width: 769px) {
+            .modal-wrap {
+                width: 560px;
+                height: 720px;
+                background: #fff;
+            }
+
+            .modal-content {
+                width: 480px;
+                height: 480px;
+            }
+
+        }
+
     </style>
     </head>
     <body>
@@ -346,10 +361,14 @@
             //이미지(png)로 다운로드
             function PrintDiv(div) {
                 div = div[0]
+                // html2canvas(div, node.ownerDocument, options, options.width != undefined ? options.width : node.ownerDocument.defaultView.innerWidth, options.height != undefined ? options.height : node.ownerDocument.defaultView.innerHeight, index).then(function (canvas) {
+                // html2canvas(div).then(function (canvas) {
+                window.scrollTo(0,0);
                 html2canvas(div).then(function (canvas) {
                     var myImage = canvas.toDataURL();
                     downloadURI(myImage, "저장이미지이름.png")
                 });
+                window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
             }
 
             function downloadURI(uri, name) {
