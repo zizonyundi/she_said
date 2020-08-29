@@ -8,104 +8,14 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    </head>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- 구글폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>여성의 말 아카이브 She Said</title>
-    <style>
-
-        #modal {
-            display: block;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-wrap {
-            display: block;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70vw;
-            height: 90vw;
-            background: #fff;
-        }
-
-        .save_btn {
-            display: block;
-            position: absolute;
-        }
-
-        .modal-content {
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60vw;
-            height: 60vw;
-            background: orange;
-        }
-
-
-        .modal-content .saying {
-            font-size: 32px;
-            padding: 20px;
-        }
-
-        .modal-content .who {
-            font-size: 15px;
-            line-height: 1.3;
-            padding: 30px;
-        }
-
-        .modal-content .from {
-            font-size: 15px;
-            line-height: 1.3;
-            padding: 30px;
-        }
-
-        .close {
-            display: block;
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 3px solid #000;
-            text-align: center;
-            line-height: 30px;
-            text-decoration: none;
-            color: #000;
-            font-size: 20px;
-            font-weight: bold;
-            right: 10px;
-            top: 10px;
-        }
-
-
-        @media screen and (min-width: 769px) {
-            .modal-wrap {
-                width: 560px;
-                height: 720px;
-                background: #fff;
-            }
-
-            .modal-content {
-                width: 480px;
-                height: 480px;
-            }
-
-        }
-
-    </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- 구글폰트 -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+        <title>여성의 말 아카이브 She Said</title>
     </head>
     <body>
         <div class="total-wrap">
@@ -119,12 +29,18 @@
                         <p class="text-from">모아나(Moana, 2016)</p>
                     </div>
                 </div>
+                <div class="top-gradient" id="top-gradient"></div>
             </div>
             <div class="bottom-wrap">
                 <div class="category-wrap" id="keyword">
-                    <p class="category" onclick="showSayings()">전체</p>
-                    <p class="category select" onclick="sortSayings('영화')">영화</p>
-                    <p class="category" onclick="sortSayings('드라마')">드라마</p>
+                    <div class="category-scroll">
+                        <p class="category select" onclick="showSayings()">전체</p>
+                        <p class="category" onclick="sortSayings('영화')">영화</p>
+                        <p class="category" onclick="sortSayings('드라마')">드라마</p>
+                        <p class="category" onclick="sortSayings('인물')">인물 </p>
+                        <p class="category" onclick="sortSayings('만화')">만화 </p>
+                        <p class="category" onclick="sortSayings('책')">책 </p>
+                    </div>
                 </div>
 
                 <div class="list-wrap" id="card-box">
@@ -248,16 +164,33 @@
                     <a href="javascript:;" class="close">X</a>
 
                     <div class="modal-content" id="modal-content">
-
+                        <p class="modal-logo">SheSaid,</p>
                         <p class="saying">내가 얼마나 더 멀리 갈지 아무도 장담할 수 없어. </p>
-                        <div class="who">모아나</div>
-                        <div class="from">모아나(Moana, 2016)</div>
+                        <div class="info-wrap">
+                            <div class="who">모아나</div>
+                            <div class="from">모아나(Moana, 2016)</div>
+                        </div>
                     </div>
-                    <div class="save_btn"><a class="hover" href='javascript:void(0);'
-                                             onclick="PrintDiv($('#modal-content'));">이미지로
-                        저장</a></div>
-                </div>
+                    <p class="option-title">테마 </p>
+                    <div class="option-wrap">
+
+                        <div class="theme-wrap">
+                            <div class="bg-color bg-color-1"><p>T</p></div>
+                            <div class="bg-color bg-color-2"><p>T</p></div>
+                            <div class="bg-color bg-color-3"><p>T</p></div>
+                            <div class="bg-color bg-color-4"><p>T</p></div>
+                            <div class="bg-color bg-color-5"><p>T</p></div>
+                            <div class="bg-color bg-color-6"><p>T</p></div>
+                        </div>
+                    </div>
+                    <a class="hover save_btn" href='javascript:void(0);'
+                       onclick="PrintDiv($('#modal-content'));">
+                        <div
+                        ">이미지로
+                        저장</div>
+                </a>
             </div>
+        </div>
         </div>
         <script>
             $(document).ready(function () {
@@ -271,6 +204,67 @@
                         $(".category").not($(this)).removeClass("select");
                     }
                 });
+
+                let bgColor1 = document.querySelector(".bg-color-1");
+                let bgColor2 = document.querySelector(".bg-color-2");
+                let bgColor3 = document.querySelector(".bg-color-3");
+                let bgColor4 = document.querySelector(".bg-color-4");
+                let bgColor5 = document.querySelector(".bg-color-5");
+                let bgColor6 = document.querySelector(".bg-color-6");
+
+                bgColor1.addEventListener("click", colorChange1);
+                bgColor2.addEventListener("click", colorChange2);
+                bgColor3.addEventListener("click", colorChange3);
+                bgColor4.addEventListener("click", colorChange4);
+                bgColor5.addEventListener("click", colorChange5);
+                bgColor6.addEventListener("click", colorChange6);
+
+                function colorChange1() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(255, 223, 136)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(150, 120, 255)`)
+                }
+
+                function colorChange2() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(167, 240, 223)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(0, 145, 255)`)
+                }
+
+                function colorChange3() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(165, 128, 255)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(255, 255, 255)`)
+                }
+
+                function colorChange4() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(255, 148, 104)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(255, 229, 0)`)
+                }
+
+                function colorChange5() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(177, 233, 255)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(0, 145, 255)`)
+                }
+
+                function colorChange6() {
+                    document.documentElement.style.setProperty(`--bg-color`, `rgb(255, 225, 125)`)
+                    document.documentElement.style.setProperty(`--text-color`, `rgb(150, 120, 255)`)
+                }
+
+                const grad = document.querySelector('#top-gradient')
+                const topOfGrad = grad.offsetTop;
+
+                console.log(topOfGrad)
+                function fixGrad() {
+                    if (window.scrollY >= topOfGrad) {
+                        grad.style.paddingTop = '-' + grad.offsetHeight + 'px';
+                        grad.classList.add('fixed');
+                    } else {
+                        grad.style.paddingTop = 0;
+                        grad.classList.remove('fixed');
+                    }
+                }
+
+                window.addEventListener('scroll', fixGrad);
+
 
                 showSayings();
                 sortSayings();
@@ -289,6 +283,7 @@
                             let saying = sayings[i]
 
                             let saying_kr = saying['saying_kr']
+                            let saying_en = saying['saying_en']
                             let img = saying['img']
                             let who = saying['who']
                             let from = saying['from']
@@ -297,6 +292,7 @@
                             let tempHtml = `<figure class="card-box" id="${made_id}" onclick="openModal('modal'); reply_click(this.id);">
                         <div class="margin-both-24">
                             <p class="card-text">${saying_kr}</p>
+                            <p class="card-text-en" id="card-text-en">${saying_en}</p>
                             <div class="card-info">
                                 <img class="list-profile"
                                      src="${img}">
@@ -331,6 +327,7 @@
                             let saying = sayings[i]
 
                             let saying_kr = saying['saying_kr']
+                            let saying_en = saying['saying_en']
                             let img = saying['img']
                             let who = saying['who']
                             let from = saying['from']
@@ -340,6 +337,7 @@
                                 `<figure class="card-box" id="${made_id}" onclick="openModal('modal'); reply_click(this.id)";>
                         <div class="margin-both-24">
                             <p class="card-text" id="card-text">${saying_kr}</p>
+                            <p class="card-text-en" id="card-text-en">${saying_en}</p>
                             <div class="card-info">
                                 <img class="list-profile"
                                      src="${img}">
@@ -363,7 +361,7 @@
                 div = div[0]
                 // html2canvas(div, node.ownerDocument, options, options.width != undefined ? options.width : node.ownerDocument.defaultView.innerWidth, options.height != undefined ? options.height : node.ownerDocument.defaultView.innerHeight, index).then(function (canvas) {
                 // html2canvas(div).then(function (canvas) {
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 html2canvas(div).then(function (canvas) {
                     var myImage = canvas.toDataURL();
                     downloadURI(myImage, "저장이미지이름.png")
@@ -392,26 +390,19 @@
                 let who = $('#' + clicked_id).find('.card-who').text();
                 let from = $('#' + clicked_id).find('.card-from').text();
 
-                $('#modal').empty()
+                $('#modal-content').empty()
                 let tempHtmlModal =
-                    `           <div class="modal-wrap" style="display:block;">
-                    <a href="javascript:;" class="close">X</a>
-
-                    <div class="modal-content" id="modal-content">
-
+                    `<p class="modal-logo">SheSaid,</p>
                         <p class="saying">${saying}</p>
-                        <div class="who">${who}</div>
-                        <div class="from">${from}</div>
-                    </div>
-                    <div class="save_btn"><a class="hover" href='javascript:void(0);'
-                                             onclick="PrintDiv($('#modal-content'));">이미지로
-                        저장</a></div>
-                </div>`
-                $('#modal').append(tempHtmlModal)
+                        <div class="info-wrap">
+                            <div class="who">${who}</div>
+                            <div class="from">${from}</div>
+                        </div>`
+                $('#modal-content').append(tempHtmlModal)
             };
 
 
-            $("#modal, .close").on('click', function () {
+            $(".close").on('click', function () {
                 $("#modal").fadeOut(300);
                 $(".modal-con").fadeOut(300);
             });
