@@ -363,7 +363,7 @@
                 // html2canvas(div).then(function (canvas) {
                 window.scrollTo(0, 0);
                 html2canvas(div).then(function (canvas) {
-                    var myImage = canvas.toDataURL();
+                    var myImage = canvas.toDataURL('image/png');
                     downloadURI(myImage, "저장이미지이름.png")
                 });
                 window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
