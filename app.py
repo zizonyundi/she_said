@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-client = MongoClient('localhost', 27017)
+client = MongoClient('0.0.0.0',27017)
 db = client.dbsparta
 
 
