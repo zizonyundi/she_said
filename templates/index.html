@@ -40,8 +40,8 @@
                         <p class="category select" onclick="showSayings()">전체</p>
                         <p class="category" onclick="sortSayings('영화')">영화</p>
                         <p class="category" onclick="sortSayings('드라마')">드라마</p>
-                        <p class="category" onclick="sortSayings('인물')">인물 </p>
-                        <p class="category" onclick="sortSayings('만화')">만화 </p>
+                        <p class="category" onclick="sortSayings('인물')">인물</p>
+                        <p class="category" onclick="sortSayings('애니메이션')">애니메이션</p>
                         <p class="category" onclick="sortSayings('책')">책 </p>
                     </div>
                 </div>
@@ -368,7 +368,7 @@
                 window.scrollTo(0, 0);
                 html2canvas(div).then(function (canvas) {
                     var myImage = canvas.toDataURL('image/png');
-                    downloadURI(myImage, "저장이미지이름.png")
+                    downloadURI(myImage, "shesaid.png")
                 });
                 window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
             }
